@@ -7,4 +7,8 @@ class RestaurantsController < ApplicationController
   def new
   end
 
+  def create
+    raise params
+  end
+
 end
