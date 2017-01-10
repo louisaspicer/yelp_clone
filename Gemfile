@@ -57,4 +57,5 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'pry'
+  gem 'rspec-collection_matchers'
 end
