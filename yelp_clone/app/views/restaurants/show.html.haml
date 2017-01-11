@@ -1,2 +1,8 @@
 =@restaurant.name
 =@restaurant.description
+- if @restaurant.reviews.any?
+  -@restaurant.reviews.each do |r|
+    =r.thoughts
+    =r.rating
+- else
+  No reviews yet!
