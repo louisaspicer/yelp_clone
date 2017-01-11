@@ -26,6 +26,7 @@ feature "User can sign in and out" do
 
     it "should see 'sign out' link" do
       visit("/")
+      # require 'pry'; binding.pry
       expect(page).to have_link("Sign out")
     end
 
