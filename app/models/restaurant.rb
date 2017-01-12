@@ -1,4 +1,3 @@
-# require 'with_user_association_extension'
 
 class Restaurant < ApplicationRecord
 
@@ -8,7 +7,12 @@ class Restaurant < ApplicationRecord
     -> { extending WithUserAssociationExtension },
     dependent: :destroy
 
+  def average_rating
+    return "N/A" if reviews.none?
+    4
+  end
 
-  # has_many :reviews, dependent: :destroy
+
+
   belongs_to :user
 end

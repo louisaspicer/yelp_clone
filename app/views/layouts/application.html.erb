@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YelpClone</title>
+    <title>Yelp Clone</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= notice %>
-    <% if user_signed_in? %>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-    <% end %>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+          <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <%= notice %>
+      <%= yield %>
+    </div>
+
+
   </body>
 </html>

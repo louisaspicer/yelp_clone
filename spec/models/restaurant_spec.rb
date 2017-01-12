@@ -17,7 +17,7 @@ describe Restaurant, type: :model do
 
   describe 'reviews' do
     describe 'build_with_user' do
-      let(:user) { User.create email: 'test@test.com' }
+      let(:user) { User.create email: 'test@test.com', password: 'test121' }
       let(:restaurant) { Restaurant.create name: 'Test' }
       let(:review_params) { {rating: 5, thoughts: 'yum'} }
 
@@ -29,6 +29,23 @@ describe Restaurant, type: :model do
 
       it 'builds a review associated with the specified user' do
         expect(review.user).to eq user
+      end
+    end
+  end
+
+  describe "average rating" do
+
+    describe "reviews" do
+      let(:user) { User.create email: 'test@test.com', password: 'test121' }
+      it "returns N/A when there are no reviews" do
+        restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
+        expect(restaurant.average_rating).to eq 'N/A'
+      end
+
+      it "returns that rating when there's one rating" do
+        restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
+        restaurant.reviews.create(rating: 4)
+        expect(restaurant.average_rating).to eq 4
       end
     end
   end
