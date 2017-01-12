@@ -12,4 +12,6 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :restaurants
+  has_many :reviews
 end

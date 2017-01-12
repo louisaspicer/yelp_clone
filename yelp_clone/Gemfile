@@ -5,9 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-gem 'byebug'
 gem 'haml'
+gem 'shoulda'
+gem 'pry'
 
 #Flexible authentication solution for Rails
 gem 'devise'

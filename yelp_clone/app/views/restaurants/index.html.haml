@@ -10,4 +10,5 @@
 - else
   No restaurants yet!
 %br
-%a(href="#{new_restaurant_path}") Add a restaurant
+- if !current_user.nil?
+  %a(href="#{new_restaurant_path}") Add a restaurant
