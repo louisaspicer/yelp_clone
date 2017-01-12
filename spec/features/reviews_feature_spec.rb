@@ -1,18 +1,12 @@
 require 'rails_helper'
 require 'web_helper'
+require 'with_user_association_extension'
+
 
 feature "reviewing" do
 
-  before do
-    visit('/')
-    click_link("Sign up")
-    fill_in("Email", with: "test@example.com")
-    fill_in("Password", with: "testtest")
-    fill_in("Password confirmation", with: "testtest")
-    click_button("Sign up")
-  end
-
   scenario "allows users to leave a review using a form" do
+    sign_up
     create_restaurant
     visit "/restaurants"
     click_link "Review KFC"
