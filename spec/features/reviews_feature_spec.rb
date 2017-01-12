@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'web_helper'
+require './spec/helpers/web_helper'
 require 'with_user_association_extension'
 
 
@@ -18,7 +18,10 @@ feature "reviewing" do
     sign_up
     create_restaurant
     leave_review("So so", "3")
+    sign_out
+    another_sign_up
     leave_review("Great", "5")
-    expect(page).to have_content("Average Rating: 4")
+    expect(page).to have_content("Average rating: ★★★★☆")
+
   end
 end

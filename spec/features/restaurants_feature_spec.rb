@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'web_helper'
+require './spec/helpers/web_helper'
 
 feature 'restaurants' do
   before do

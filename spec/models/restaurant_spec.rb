@@ -37,16 +37,31 @@ describe Restaurant, type: :model do
 
     describe "reviews" do
       let(:user) { User.create email: 'test@test.com', password: 'test121' }
-      it "returns N/A when there are no reviews" do
-        restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
-        expect(restaurant.average_rating).to eq 'N/A'
+      context "no reviews" do
+        it "returns N/A when there are no reviews" do
+          restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
+          expect(restaurant.average_rating).to eq 'N/A'
+        end
+      end
+      context "one review" do
+        it "returns that rating" do
+          restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
+          restaurant.reviews.create(rating: 4, user_id: user.id)
+          expect(restaurant.average_rating).to eq 4
+        end
+      end
+      describe "multiple reviews" do
+        let(:user) { User.create email: 'test2@test.com', password: 'test121' }
+        let(:user2) { User.create email: 'test3@test.com', password: 'test121' }
+
+        it "returns the average rating" do
+          restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
+          restaurant.reviews.create(rating: 1, user_id: user.id)
+          restaurant.reviews.create(rating: 5, user_id: user2.id)
+          expect(restaurant.average_rating).to eq 3
+        end
       end
 
-      it "returns that rating when there's one rating" do
-        restaurant = Restaurant.create(name: 'The Ivy', user_id: user.id)
-        restaurant.reviews.create(rating: 4)
-        expect(restaurant.average_rating).to eq 4
-      end
     end
   end
 

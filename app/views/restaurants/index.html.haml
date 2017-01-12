@@ -6,6 +6,7 @@
 - if @restaurants.any?
   - @restaurants.each do |restaurant|
     %h1= link_to restaurant.name, restaurant_path(restaurant), :class => "btn btn-lg btn-primary"
+    %h3 Average rating: #{star_rating(restaurant.average_rating)}
     %br
     - if current_user
       = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
