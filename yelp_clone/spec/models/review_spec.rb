@@ -5,4 +5,6 @@ describe Review, type: :model do
     review = Review.new(rating: 10)
     expect(review).to have(1).error_on(:rating)
   end
+
+  # it { is_expected.to validate_uniqueness_of(:user).scoped_to(:restaurant) }.with_message("has reviewed this restaurant already")
 end
